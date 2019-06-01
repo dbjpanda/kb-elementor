@@ -1,0 +1,48 @@
+/*ul > li  {*/
+    /*columns: 2;*/
+    /*-webkit-columns: 2;*/
+    /*-moz-columns: 2;*/
+    /*font-weight: bold;*/
+/*}*/
+
+ /*ul > li li {*/
+    /*columns: 0;*/
+    /*-webkit-columns: 0;*/
+    /*-moz-columns: 0;*/
+    /*font-weight: normal;*/
+/*}*/
+
+
+
+/*ul{*/
+    /*width:210px;*/
+/*}*/
+/*li{*/
+    /*background:green;*/
+    /*float:left;*/
+    /*height:100px;*/
+    /*margin:0 10px 10px 0;*/
+    /*width:100px;*/
+/*}*/
+/*li:nth-child(even){*/
+    /*margin-right:0;*/
+/*}*/
+
+
+
+/*ul {*/
+    /*width: 760px;*/
+    /*margin-bottom: 20px;*/
+    /*overflow: hidden;*/
+    /*border-top: 1px solid #ccc;*/
+/*}*/
+/*li {*/
+    /*line-height: 1.5em;*/
+    /*border-bottom: 1px solid #ccc;*/
+    /*float: left;*/
+    /*display: inline;*/
+/*}*/
+/*#elementor-kb li {*/
+    /*width: 50%;*/
+/*}*/
+
