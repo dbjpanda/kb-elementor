@@ -10,9 +10,11 @@
 
 namespace KbElementor;
 
-define('PLUGIN_FILE_URL', __FILE__);
+define('KE_PLUGIN_FILE_URL', plugins_url(__FILE__));
+define('KE_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ));
 
 use KbElementor\Widgets;
+
 /**
  * Class Plugin
  *
@@ -43,6 +45,7 @@ class Plugin {
      * @return Plugin An instance of the class.
      */
     public static function instance() {
+
         if ( is_null( self::$_instance ) ) {
             self::$_instance = new self();
         }
@@ -52,40 +55,45 @@ class Plugin {
     /**
      * Include Widgets files
      *
-     * Load widgets files
-     *
      * @since 1.2.0
      * @access private
      */
     private function include_widgets_files() {
-        require_once( __DIR__ . '/widgets/toc.php' );
+
+        require_once( __DIR__ . '/widgets/toc-posts/toc-posts.php' );
+        require_once( __DIR__ . '/widgets/toc-headings/toc-headings.php' );
     }
 
     /**
-     * widget_scripts
-     *
-     * Load required plugin core files.
+     * Register Widgets type
      *
      * @since 1.2.0
      * @access public
      */
-    public function register_scripts() {
+    public function register_widgets_type(){
 
-        wp_register_style( 'jquery-simpleTreeMenu.css', plugins_url( '/assets/css/jquery-simpleTreeMenu.css', __FILE__ ));
-        wp_enqueue_style( 'jquery-simpleTreeMenu.css' );
-        wp_register_script( 'jquery-simpleTreeMenu.js', plugins_url( '/assets/js/jquery-simpleTreeMenu.js', __FILE__ ), [ 'jquery' ], false, true );
-        wp_enqueue_script( 'jquery-simpleTreeMenu.js' );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\TocPosts() );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\TocHeadings() );
 
-        wp_register_style( 'kb-elementor-toc.css', plugins_url( '/assets/css/toc.css', __FILE__ ));
-        wp_enqueue_style( 'kb-elementor-toc.css' );
-        wp_register_script( 'kb-elementor-toc.js', plugins_url( '/assets/js/toc.js', __FILE__ ), [ 'jquery' ], false, true );
-        wp_enqueue_script( 'kb-elementor-toc.js' );
+    }
 
+    /**
+     * Register css and js assets for elementor
+     *
+     * @since 1.2.0
+     * @access public
+     */
+    public function register_widget_assets() {
 
-//        wp_localize_script( 'kb-elementor-toc-js', 'kbElementorToc',array(
-//            \KbElementor\Widgets\Toc::settings()
-//        ) );
+        wp_register_style( 'jquery-simpleTreeMenu', KE_PLUGIN_DIR_URL . 'assets/css/jquery-simpleTreeMenu.css');
+        wp_register_style( 'kb-elementor-toc-posts', KE_PLUGIN_DIR_URL . 'assets/css/toc-posts.css');
+        wp_register_style( 'jquery-simpleTreeMenu', KE_PLUGIN_DIR_URL . 'assets/css/jquery-simpleTreeMenu.css');
+        wp_register_style( 'kb-elementor-toc-headings', KE_PLUGIN_DIR_URL . 'assets/css/toc-headings.css');
 
+        wp_register_script( 'jquery-simpleTreeMenu', KE_PLUGIN_DIR_URL . 'assets/js/jquery-simpleTreeMenu.js',  [ 'jquery' ], false, true );
+        wp_register_script( 'kb-elementor-toc-posts', KE_PLUGIN_DIR_URL . 'assets/js/toc-posts.js', [ 'jquery' ], false, true );
+        wp_register_script( 'kb-elementor-toc-headings', KE_PLUGIN_DIR_URL . 'assets/js/toc-headings.js', [ 'jquery' ], false, true );
+        wp_register_script( 'kb-elementor-order-posts-tags', KE_PLUGIN_DIR_URL . 'assets/js/order-posts-tags.js', [ 'jquery' ], false, true );
     }
 
     /**
@@ -96,12 +104,24 @@ class Plugin {
      * @since 1.2.0
      * @access public
      */
-    public function register_widgets() {
-        // Its is now safe to include Widgets files
-        $this->include_widgets_files();
+    public function register_elementor_widgets() {
 
-        // Register Widgets
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Toc() );
+        $this->include_widgets_files();
+        $this->register_widgets_type();
+    }
+
+    /**
+     * Register a custom category
+     *
+     * @since 1.2.0
+     * @access public
+     */
+    public function add_widget_category( $elements_manager ) {
+
+        $elements_manager->add_category('kb-elementor', [
+            'title' => __( 'KB ELEMENTOR', 'kb-elementor' ),
+            'icon' => 'fa fa-plug'
+        ]);
     }
 
     /**
@@ -114,20 +134,19 @@ class Plugin {
      */
     public function __construct() {
 
+        // Include main plugin functions
+        require_once( __DIR__ . '/functions.php' );
 
-        // Register widget scripts
-        add_action( 'elementor/frontend/after_register_scripts', [ $this, 'register_scripts' ] );
+        // Register all widget scripts
+        add_action( 'elementor/frontend/after_register_scripts', [ $this, 'register_widget_assets' ] );
 
-        // Register widgets
-        add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+        // Register all widgets
+        add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_elementor_widgets' ] );
 
-
-
+        // // Add a custom category in editor's panel widgets
+        add_action( 'elementor/elements/categories_registered', [ $this, 'add_widget_category'] );
     }
 }
-
-
-require_once( __DIR__ . '/functions.php' );
 
 // Instantiate Plugin Class
 Plugin::instance();

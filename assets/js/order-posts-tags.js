@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
         var itemList = jQuery('#the-list');
     }
     else{
-        var itemList = jQuery('.elementor-kb');
+        var itemList = jQuery('.ke-toc-posts');
     }
 
     itemList.sortable({
@@ -74,7 +74,7 @@ jQuery(document).ready(function($) {
     });
 
     // Append "Add post" option on frontend
-    var term = jQuery('.elementor-kb-term-href');
+    var term = jQuery('.ke-toc-posts-term');
     if(term.length){
         jQuery(term).each(function() {
             jQuery(this).after( '<a href = \"/wp-admin/post-new.php?post_cat='+jQuery(this).text()+'\" target=\"_blank\"><i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i></a>' );
@@ -82,7 +82,7 @@ jQuery(document).ready(function($) {
         });
     }
     else{
-        jQuery('#elementor-kb').append( '<li><span class="stm-icon"></span><a class=\"stm-content\" href = \"/wp-admin/post-new.php?post_cat='+jQuery(location).attr("href").match(/[^\/]*$/)[0]+'\" target=\"_blank\">Add post <i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i></a></li>' );
+        jQuery('.ke-toc-posts').append( '<li><span class="stm-icon"></span><a class=\"stm-content\" href = \"/wp-admin/post-new.php?post_cat='+jQuery(location).attr("href").match(/[^\/]*$/)[0]+'\" target=\"_blank\">Add post <i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i></a></li>' );
 
     }
 

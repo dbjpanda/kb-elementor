@@ -3,6 +3,8 @@
 
 namespace KbElementor\Widgets;
 
+require_once( __DIR__ . '/functions.php' );
+
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
@@ -11,76 +13,69 @@ use Elementor\Scheme_Color;
 use Elementor\Group_Control_Text_Shadow;
 
 
-
 // don't call the file directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-class Toc extends Widget_Base {
-
+class TocPosts extends Widget_Base {
 
     public function get_name() {
-        return 'kb-elementor';
+        return 'ke-toc-posts';
     }
 
     public function get_title() {
-        return __( 'TOC', 'kb-elementor-toc' );
+        return __( 'TOC Posts', 'kb-elementor' );
     }
 
     public function get_icon() {
-        return 'fa fa-folder-open';
+        return 'fa fa-book';
+    }
+
+    public function get_keywords() {
+        return [ 'table', 'content', 'index', 'tree', 'terms'];
     }
 
     public function get_categories() {
-        return [ 'general' ];
+        return [ 'kb-elementor' ];
     }
 
+    public function get_script_depends() {
+        if ( is_user_logged_in()) {
+            return [
+                'jquery-simpleTreeMenu',
+                'kb-elementor-toc-posts',
+                'jquery-ui-sortable',
+                'kb-elementor-order-posts-tags'
+            ];
+        }
+        else{
+            return [
+                'jquery-simpleTreeMenu',
+                'kb-elementor-toc-posts'
+            ];
+        }
+    }
+
+    public function get_style_depends() {
+        return [
+            'jquery-simpleTreeMenu',
+            'kb-elementor-toc-posts'
+        ];
+    }
 
     protected function _register_controls() {
 
         $this->start_controls_section(
-            'elementor_kb_content',
+            'ke-toc-posts-content',
             [
-                'label' => __( 'Configuration', 'kb-elementor-toc' ),
+                'label' => __( 'Configuration', 'ke-toc-posts' ),
             ]
         );
 
-//        $this->add_control(
-//            'title',
-//            [
-//                'label' => __( 'Title', 'kb-elementor-toc' ),
-//                'type' => Controls_Manager::TEXT,
-//            ]
-//        );
-//        $this->add_responsive_control(
-//            'elementor_kb_columns',
-//            [
-//                'label' => __( 'Columns', 'kb-elementor-toc' ),
-//                'type' => Controls_Manager::SELECT,
-//                'default' => '4',
-//                'tablet_default' => '2',
-//                'mobile_default' => '1',
-//                'options' => [
-//                    '1' => '1',
-//                    '2' => '2',
-//                    '3' => '3',
-//                    '4' => '4',
-//                    '5' => '5',
-//                    '6' => '6',
-//                ],
-//                'selectors' => [
-//                    '{{WRAPPER}}.elementor-kb-term-href' => 'flex-basis: calc( 1 / {{VALUE}} * 100% );',
-//                ],
-//            ]
-//        );
-//
-
-
-
         $this->add_control(
-            'elementor_kb_ajax_enable',
+            'ke-toc-posts-ajax-enable',
             [
-                'label' => __( 'Ajax', 'kb-elementor-toc' ),
+                'label' => __( 'Ajax', 'ke-toc-posts' ),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
                 'label_on' => __( 'Enable', 'toc' ),
                 'label_off' => __( 'Disable', 'toc' ),
@@ -91,22 +86,18 @@ class Toc extends Widget_Base {
 
         $this->end_controls_section();
 
-
-
-
         $this->start_controls_section(
-            'section_title_style',
+            'ke-toc-posts-text',
             [
-                'label' => __( 'Text', 'kb-elementor-toc' ),
+                'label' => __( 'Text', 'ke-toc-posts' ),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
-
         $this->add_control(
-            'elementor_kb_term_href_color',
+            'ke-toc-posts-term-color',
             [
-                'label' => __( 'Term Color', 'kb-elementor-toc' ),
+                'label' => __( 'Term Color', 'ke-toc-posts' ),
                 'type' => Controls_Manager::COLOR,
                 'scheme' => [
                     'type' => Scheme_Color::get_type(),
@@ -114,16 +105,15 @@ class Toc extends Widget_Base {
                 ],
                 'selectors' => [
                     // Stronger selector to avoid section style from overwriting
-                    '{{WRAPPER}} .elementor-kb-term-href' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ke-toc-posts-term' => 'color: {{VALUE}};',
                 ],
             ]
         );
 
-
         $this->add_control(
-            'elementor_kb_post__href_color',
+            'ke-toc-posts-post-color',
             [
-                'label' => __( 'Post Color', 'kb-elementor-toc' ),
+                'label' => __( 'Post Color', 'ke-toc-posts' ),
                 'type' => Controls_Manager::COLOR,
                 'scheme' => [
                     'type' => Scheme_Color::get_type(),
@@ -131,20 +121,18 @@ class Toc extends Widget_Base {
                 ],
                 'selectors' => [
                     // Stronger selector to avoid section style from overwriting
-                    '{{WRAPPER}} .elementor-kb-post-href' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ke-toc-posts-post' => 'color: {{VALUE}};',
                 ],
             ]
         );
-
-
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
                 'name' => 'typography',
-                'label' => __( 'Typography', 'kb-elementor-toc' ),
+                'label' => __( 'Typography', 'ke-toc-posts' ),
                 'scheme' => Scheme_Typography::TYPOGRAPHY_1,
-                'selector' => '{{WRAPPER}} .elementor-kb-text',
+                'selector' => '{{WRAPPER}} .ke-toc-posts-text',
             ]
         );
 
@@ -152,33 +140,13 @@ class Toc extends Widget_Base {
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'text_shadow',
-                'selector' => '{{WRAPPER}} .elementor-kb-text',
+                'selector' => '{{WRAPPER}} .ke-toc-posts-text',
             ]
         );
 
         $this->end_controls_section();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Render Table of content
-     */
     protected function render() {
 
         if (!is_singular()){
@@ -205,12 +173,12 @@ class Toc extends Widget_Base {
                 // Merge everything
                 // @toDo Find a way to merge by category and post order
                 foreach ($post_of_current_term_only as $post){
-                    $posts_and_terms[] = '<a class = "elementor-kb-post-href stm-content" href='.get_permalink($post->ID).' data-id="'.$post->ID.'">'.$post->post_title.'</a>';
+                    $posts_and_terms[] = '<a class = "ke-toc-posts-post stm-content" href='.get_permalink($post->ID).' data-id="'.$post->ID.'">'.$post->post_title.'</a>';
                 }
             }
 
         }
-        else{
+        else{ // @toDo remove this to a new widget `Related Posts`
 
             // It is a singular post so retrieve it's parent term and start building TOC starting from that term.
             global $post;
@@ -222,37 +190,22 @@ class Toc extends Widget_Base {
             // Merge everything
             // @toDo Find a way to merge by category and post order
             foreach ($post_of_current_term_only  as $post){
-                $posts_and_terms[] = '<a class = "elementor-kb-post-href stm-content" href='.get_permalink($post->ID).' data-id="'.$post->ID.'">'.$post->post_title.'</a>';
+                $posts_and_terms[] = '<a class = "ke-toc-posts-post stm-content" href='.get_permalink($post->ID).' data-id="'.$post->ID.'">'.$post->post_title.'</a>';
             }
         }
 
-
-        echo '<ul style="display:none;" id="elementor-kb" class="elementor-kb-text elementor-kb" data-ajax-enable="'.$this->get_settings_for_display( 'elementor_kb_ajax_enable' ).'">';
+        echo '<ul style="display:none;" id="ke-toc-posts" class="ke-toc-posts ke-toc-posts-text" data-ajax-enable="'.$this->get_settings_for_display( 'ke-toc-posts-ajax-enable' ).'">';
         if (!empty($posts_and_terms)){
             echo convert_array_to_html_list($posts_and_terms);
             wp_reset_postdata();
         }
         echo '</ul>';
 
+
     }
 
-
-
-
-
-
-
-    /**
-     *
-     */
     protected function _content_template(){
 
     }
-
-
-
-
-
-
 
 }

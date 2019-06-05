@@ -1,9 +1,9 @@
 
 ( function( $ ) {
 
-    var KbElementor = function( $scope, $ ) {
+    var KeTocPosts = function( $scope, $ ) {
 
-        var $this = $("#elementor-kb");
+        var $this = $("#ke-toc-posts");
 
         // Convert html list to tree using Simple Tree Menu Jquery library
         $($this).simpleTreeMenu();
@@ -13,7 +13,7 @@
         $title = $.trim($('#kb-title').text());
         $($this).simpleTreeMenu('searchForTitle', $title);
 
-        $(".elementor-kb-post-href").click(function(){
+        $(".ke-toc-posts-post").click(function(){
 
             // Use ajax to fetch post
             if ( $($this).attr("data-ajax-enable") === "yes") {
@@ -50,7 +50,7 @@
 
     // Add Js file to elementor edit page
     $( window ).on( 'elementor/frontend/init', function() {
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/kb-elementor.default', KbElementor );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/ke-toc-posts.default', KeTocPosts );
     } );
 } )( jQuery );
 
