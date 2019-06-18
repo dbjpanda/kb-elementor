@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Kb Elmentor
  * Plugin URI: https://dbjpanda.me
@@ -10,104 +11,179 @@
 
 namespace KbElementor;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 define('KE_PLUGIN_FILE_URL', plugins_url(__FILE__));
 define('KE_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ));
-
-use KbElementor\Widgets;
+define('KE_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
 /**
- * Class Plugin
- *
  * Main Plugin class
- * @since 1.2.0
  */
 class Plugin {
 
     /**
-     * Instance
-     *
-     * @since 1.2.0
-     * @access private
-     * @static
-     *
-     * @var Plugin The single instance of the class.
+     * @var Plugin
      */
-    private static $_instance = null;
+    private static $_instance;
+
+    /**
+     * @var Manager
+     */
+    public $modules_manager;
+
+
+    private $classes_aliases = [
+        'ElementorPro\Modules\PanelPostsControl\Module' => 'ElementorPro\Modules\QueryControl\Module',
+        'ElementorPro\Modules\PanelPostsControl\Controls\Group_Control_Posts' => 'ElementorPro\Modules\QueryControl\Controls\Group_Control_Posts',
+        'ElementorPro\Modules\PanelPostsControl\Controls\Query' => 'ElementorPro\Modules\QueryControl\Controls\Query',
+    ];
+
+    /**
+     * Throw error on object clone
+     *
+     * The whole idea of the singleton design pattern is that there is a single
+     * object therefore, we don't want the object to be cloned.
+     *
+     * @since 1.0.0
+     * @return void
+     */
+    public function __clone() {
+        // Cloning instances of the class is forbidden
+        _doing_it_wrong( __FUNCTION__, __( 'Something went wrong.', 'kb-elementor' ), '1.0.0' );
+    }
+
+    /**
+     * Disable unserializing of the class
+     *
+     * @since 1.0.0
+     * @return void
+     */
+    public function __wakeup() {
+        // Unserializing instances of the class is forbidden
+        _doing_it_wrong( __FUNCTION__, __( 'Something went wrong.', 'kb-elementor' ), '1.0.0' );
+    }
+
+    /**
+     * @return \Elementor\Plugin
+     */
+    public static function elementor() {
+        return \Elementor\Plugin::$instance;
+    }
 
     /**
      * Instance
      *
      * Ensures only one instance of the class is loaded or can be loaded.
      *
-     * @since 1.2.0
      * @access public
      *
      * @return Plugin An instance of the class.
      */
     public static function instance() {
-
         if ( is_null( self::$_instance ) ) {
             self::$_instance = new self();
         }
         return self::$_instance;
     }
 
-    /**
-     * Include Widgets files
-     *
-     * @since 1.2.0
-     * @access private
-     */
-    private function include_widgets_files() {
+    private function includes() {
+        // Main plugin functions
+        require_once( KE_PLUGIN_DIR_PATH . 'includes/functions.php' );
 
-        require_once( __DIR__ . '/widgets/toc-posts/toc-posts.php' );
-        require_once( __DIR__ . '/widgets/toc-headings/toc-headings.php' );
+        // Elementor module manger which instantiate the elementor widgets
+        require KE_PLUGIN_DIR_PATH . 'includes/modules-manager.php';
     }
 
     /**
-     * Register Widgets type
+     * Autoloader function for all classes files
+     */
+    public function autoload( $class ) {
+        if ( 0 !== strpos( $class, __NAMESPACE__ ) ) {
+            return;
+        }
+
+        $has_class_alias = isset( $this->classes_aliases[ $class ] );
+
+        // Backward Compatibility: Save old class name for set an alias after the new class is loaded
+        if ( $has_class_alias ) {
+            $class_alias_name = $this->classes_aliases[ $class ];
+            $class_to_load = $class_alias_name;
+        } else {
+            $class_to_load = $class;
+        }
+
+        if ( ! class_exists( $class_to_load ) ) {
+            $filename = strtolower(
+                preg_replace(
+                    [ '/^' . __NAMESPACE__ . '\\\/', '/([a-z])([A-Z])/', '/_/', '/\\\/' ],
+                    [ '', '$1-$2', '-', DIRECTORY_SEPARATOR ],
+                    $class_to_load
+                )
+            );
+            $filename = KE_PLUGIN_DIR_PATH . $filename . '.php';
+
+            if ( is_readable( $filename ) ) {
+                include( $filename );
+            }
+        }
+
+        if ( $has_class_alias ) {
+            class_alias( $class_alias_name, $class );
+        }
+    }
+
+    /**
+     * Register all css assets
      *
-     * @since 1.2.0
+     * @since 1.0.0
      * @access public
      */
-    public function register_widgets_type(){
+    public function register_widget_styles() {
 
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\TocPosts() );
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\TocHeadings() );
+        // Toc Posts
+        wp_register_style( 'vendor-simpleTreeMenu', KE_PLUGIN_DIR_URL . 'assets/vendor/simpleTreeMenu/jquery-simpleTreeMenu.css');
+        wp_register_style( 'ke-toc-posts', KE_PLUGIN_DIR_URL . 'assets/css/toc-posts.css');
+
+        // TOC Headings
+        wp_register_style( 'ke-toc-headings', KE_PLUGIN_DIR_URL . 'assets/css/toc-headings.css');
 
     }
 
     /**
-     * Register css and js assets for elementor
+     * Register all js assets
      *
-     * @since 1.2.0
+     * @since 1.0.0
      * @access public
      */
-    public function register_widget_assets() {
+    public function register_widget_scripts() {
 
-        wp_register_style( 'jquery-simpleTreeMenu', KE_PLUGIN_DIR_URL . 'assets/css/jquery-simpleTreeMenu.css');
-        wp_register_style( 'kb-elementor-toc-posts', KE_PLUGIN_DIR_URL . 'assets/css/toc-posts.css');
-        wp_register_style( 'jquery-simpleTreeMenu', KE_PLUGIN_DIR_URL . 'assets/css/jquery-simpleTreeMenu.css');
-        wp_register_style( 'kb-elementor-toc-headings', KE_PLUGIN_DIR_URL . 'assets/css/toc-headings.css');
+        // Toc Posts
+        wp_register_script( 'vendor-simpleTreeMenu', KE_PLUGIN_DIR_URL . 'assets/vendor/simpleTreeMenu/jquery-simpleTreeMenu.js',  [ 'jquery' ], false, true );
+        wp_register_script( 'ke-toc-posts', KE_PLUGIN_DIR_URL . 'assets/js/toc-posts.js', [ 'jquery' ], false, true );
+        wp_register_script( 'ke-order-posts-tags', KE_PLUGIN_DIR_URL . 'assets/js/order-posts-tags.js', [ 'jquery' ], false, true );
 
-        wp_register_script( 'jquery-simpleTreeMenu', KE_PLUGIN_DIR_URL . 'assets/js/jquery-simpleTreeMenu.js',  [ 'jquery' ], false, true );
-        wp_register_script( 'kb-elementor-toc-posts', KE_PLUGIN_DIR_URL . 'assets/js/toc-posts.js', [ 'jquery' ], false, true );
-        wp_register_script( 'kb-elementor-toc-headings', KE_PLUGIN_DIR_URL . 'assets/js/toc-headings.js', [ 'jquery' ], false, true );
-        wp_register_script( 'kb-elementor-order-posts-tags', KE_PLUGIN_DIR_URL . 'assets/js/order-posts-tags.js', [ 'jquery' ], false, true );
+        // TOC Headings
+        wp_register_script( 'vendor-tocbot', KE_PLUGIN_DIR_URL . 'assets/vendor/tocbot/tocbot.js', [ 'jquery' ], false, true );
+        wp_register_script( 'ke-toc-headings', KE_PLUGIN_DIR_URL . 'assets/js/toc-headings.js',  [ 'jquery' ], false, true );
+
     }
 
-    /**
-     * Register Widgets
-     *
-     * Register new Elementor widgets.
-     *
-     * @since 1.2.0
-     * @access public
-     */
-    public function register_elementor_widgets() {
+    public function on_elementor_init()
+    {
+        $this->modules_manager = new Manager();
 
-        $this->include_widgets_files();
-        $this->register_widgets_type();
+        /**
+         * Kb Elementor init.
+         *
+         * Fires on Kb Elementor, after Elementor has finished loading but
+         * before any headers are sent.
+         *
+         * @since 1.0.0
+         */
+        do_action('kb_elementor/init');
     }
 
     /**
@@ -116,7 +192,7 @@ class Plugin {
      * @since 1.2.0
      * @access public
      */
-    public function add_widget_category( $elements_manager ) {
+    public function register_widget_category( $elements_manager ) {
 
         $elements_manager->add_category('kb-elementor', [
             'title' => __( 'KB ELEMENTOR', 'kb-elementor' ),
@@ -132,21 +208,28 @@ class Plugin {
      * @since 1.2.0
      * @access public
      */
-    public function __construct() {
+    private function __construct() {
 
-        // Include main plugin functions
-        require_once( __DIR__ . '/functions.php' );
+        // Register autoload function
+        spl_autoload_register( [ $this, 'autoload' ] );
+
+        // Include some backend files like functions.php module-manger.php etc
+        $this->includes();
+
+        // Instantiate your module manager on elementor init which results in instantiate your widget too
+        add_action( 'elementor/init', [ $this, 'on_elementor_init' ] );
+
+        // Register a custom category in editor's panel widgets
+        add_action( 'elementor/elements/categories_registered', [ $this, 'register_widget_category'] );
+
+        // Register all widget styles
+        add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'register_widget_styles' ] );
 
         // Register all widget scripts
-        add_action( 'elementor/frontend/after_register_scripts', [ $this, 'register_widget_assets' ] );
+        add_action( 'elementor/frontend/after_register_scripts', [ $this, 'register_widget_scripts' ] );
 
-        // Register all widgets
-        add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_elementor_widgets' ] );
-
-        // // Add a custom category in editor's panel widgets
-        add_action( 'elementor/elements/categories_registered', [ $this, 'add_widget_category'] );
     }
 }
 
-// Instantiate Plugin Class
+// Instantiate `Plugin` Class
 Plugin::instance();

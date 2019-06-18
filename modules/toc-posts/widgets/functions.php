@@ -5,8 +5,8 @@
  *  @toDo Remove this action when the issue https://github.com/elementor/elementor/issues/7907 gets resolved
  */
 add_action( 'elementor/preview/enqueue_styles', function() {
-    wp_enqueue_style('jquery-simpleTreeMenu');
-    wp_enqueue_style( 'kb-elementor-toc-posts' );
+    wp_enqueue_style('vendor-simpleTreeMenu');
+    wp_enqueue_style( 'ke-toc-posts' );
 } );
 
 

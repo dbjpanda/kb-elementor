@@ -1,7 +1,7 @@
 <?php
 
 
-namespace KbElementor\Widgets;
+namespace KbElementor\Modules\TocPosts\Widgets;
 
 require_once( __DIR__ . '/functions.php' );
 
@@ -11,13 +11,14 @@ use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
 use Elementor\Scheme_Color;
 use Elementor\Group_Control_Text_Shadow;
+use KbElementor\Base\Base_Widget;
 
 
 // don't call the file directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-class TocPosts extends Widget_Base {
+class Toc_Posts extends Base_Widget {
 
     public function get_name() {
         return 'ke-toc-posts';
@@ -35,30 +36,27 @@ class TocPosts extends Widget_Base {
         return [ 'table', 'content', 'index', 'tree', 'terms'];
     }
 
-    public function get_categories() {
-        return [ 'kb-elementor' ];
-    }
 
     public function get_script_depends() {
         if ( is_user_logged_in()) {
             return [
-                'jquery-simpleTreeMenu',
-                'kb-elementor-toc-posts',
+                'vendor-simpleTreeMenu',
+                'ke-toc-posts',
                 'jquery-ui-sortable',
-                'kb-elementor-order-posts-tags'
+                'ke-order-posts-tags'
             ];
         }
         else{
             return [
-                'jquery-simpleTreeMenu',
-                'kb-elementor-toc-posts'
+                'vendor-simpleTreeMenu',
+                'ke-toc-posts'
             ];
         }
     }
 
     public function get_style_depends() {
         return [
-            'jquery-simpleTreeMenu',
+            'vendor-simpleTreeMenu',
             'kb-elementor-toc-posts'
         ];
     }

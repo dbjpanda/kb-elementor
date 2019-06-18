@@ -197,3 +197,39 @@ function uc_draft_category( $post_ID, $post ){
 }
 add_action( 'wp_insert_post', 'uc_draft_category', 10, 2 );
 add_filter( 'pre_option_default_category', 'uc_get_default_cat_by_url' );
+
+
+/**
+ *  Write anything to debug.log file E.g write_log("My first log message")
+ */
+if (!function_exists('write_log')) {
+
+    function write_log($log) {
+        if (true === WP_DEBUG) {
+            if (is_array($log) || is_object($log)) {
+                error_log(print_r($log, true));
+            } else {
+                error_log($log);
+            }
+        }
+    }
+}
+
+/**
+ *  Add some custom Icons to Elementor Icon control list
+ */
+function ke_modify_icon_controls( $controls_registry ) {
+    // Get existing icons
+    $icons = $controls_registry->get_control( 'icon' )->get_settings( 'options' );
+    // Append new icons
+    $new_icons = array_merge(
+        array(
+            'ke-show-button' => '[Show] ke-show-button',
+            'ke-hide-button' => '[Hide] ke-hide-button',
+        ),
+        $icons
+    );
+    // Then we set a new list of icons as the options of the icon control
+    $controls_registry->get_control( 'icon' )->set_settings( 'options', $new_icons );
+}
+add_action( 'elementor/controls/controls_registered', 'ke_modify_icon_controls', 10, 1 );
