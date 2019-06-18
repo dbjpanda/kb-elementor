@@ -125,7 +125,7 @@
 /*}*/
 
 
-h1:focus, h2:focus, h3:focus, h4:focus, h5:focus, h6:focus {
+/*h1:focus, h2:focus, h3:focus, h4:focus, h5:focus, h6:focus {*/
     /*background-color: red;*/
     /*height: 70px;*/
     /*margin-top: -70px;*/
@@ -134,11 +134,11 @@ h1:focus, h2:focus, h3:focus, h4:focus, h5:focus, h6:focus {
     /*box-shadow: 0 0 10px #df9eed;*/
     /*padding-top: -70px;*/
     /*border:0; padding: 0;*/
-}
+/*}*/
 
-h1:target, h2:target, h3:target, h4:target, h5:target, h6:target{
+/*h1:target, h2:target, h3:target, h4:target, h5:target, h6:target{*/
 
-}
+/*}*/
 
 
 /*h4::before {*/
@@ -189,16 +189,16 @@ h1:target, h2:target, h3:target, h4:target, h5:target, h6:target{
     /*margin-top: -70px;*/
 /*}*/
 
-.ke-toc-headings-content h1:focus,
-.ke-toc-headings-content h2:focus,
-.ke-toc-headings-content h3:focus,
-.ke-toc-headings-content h4:focus,
-.ke-toc-headings-content h5:focus,
-.ke-toc-headings-content h6:focus {
-    outline: none;
-    text-decoration: underline;
-}
 
+/*.ke-toc-headings-content h1:focus,*/
+/*.ke-toc-headings-content h2:focus,*/
+/*.ke-toc-headings-content h3:focus,*/
+/*.ke-toc-headings-content h4:focus,*/
+/*.ke-toc-headings-content h5:focus,*/
+/*.ke-toc-headings-content h6:focus {*/
+    /*outline: none;*/
+    /*text-decoration: underline;*/
+/*}*/
 
 
 

@@ -105,11 +105,6 @@ class Toc_Headings extends Base_Widget {
                         'min' => 0,
                         'max' => 500,
                     ],
-                ],
-                'selectors' => [
-                    '(desktop) .ke-toc-headings-content h1, h2, h3, h4, h5, h6' => 'padding-top: {{SIZE}}{{UNIT}}; margin-top: -{{SIZE}}{{UNIT}}',
-                    '(tablet) .ke-toc-headings-content h1, h2, h3, h4, h5, h6' => 'padding-top: {{SIZE}}{{UNIT}}; margin-top: -{{SIZE}}{{UNIT}}',
-                    '(mobile) .ke-toc-headings-content h1, h2, h3, h4, h5, h6' => 'padding-top: {{SIZE}}{{UNIT}}; margin-top: -{{SIZE}}{{UNIT}}',
                 ]
             ]
         );
@@ -332,11 +327,16 @@ class Toc_Headings extends Base_Widget {
             'content_selector',
             [
                 'label'       => __( 'Content Selector', 'toc-headings' ),
-                'description'       => __( 'Which content area should be searched for headings tag. Provide a unique selector to override default one.', 'toc-headings' ),
+                'description'       => __( 'Which content area should be searched for headings tag. Provide a unique selector to override default one. Refresh to see changes.', 'toc-headings' ),
                 'type'        => Controls_Manager::TEXT,
                 'label_block' => true,
                 'default'     => '.ke-toc-headings-content',
                 'placeholder' => '.ke-toc-headings-content',
+                'selectors' => [
+                    '(desktop)' => '/*Kb Elementor workaround start*/ } /*Heading Offset*/ {{VALUE}} h1, {{VALUE}} h2, {{VALUE}} h3, {{VALUE}} h4, {{VALUE}} h5, {{VALUE}} h6 { padding-top: {{heading_offset.SIZE}}{{heading_offset.UNIT}}; margin-top: -{{heading_offset.SIZE}}{{heading_offset.UNIT}} } /*Focused Heading Outline*/ {{VALUE}} h1:focus, {{VALUE}} h2:focus, {{VALUE}} h3:focus, {{VALUE}} h4:focus, {{VALUE}} h5:focus, {{VALUE}} h6:focus{ outline:none; text-decoration: underline } { /*Kb Elementor workaround end*/',
+                    '(tablet)' => '/*Kb Elementor workaround start*/ } /*Heading Offset*/ {{VALUE}} h1, {{VALUE}} h2, {{VALUE}} h3, {{VALUE}} h4, {{VALUE}} h5, {{VALUE}} h6 { padding-top: {{heading_offset_tablet.SIZE}}{{heading_offset_tablet.UNIT}}; margin-top: -{{heading_offset_tablet.SIZE}}{{heading_offset_tablet.UNIT}} } /*Focused Heading Outline*/ {{VALUE}} h1:focus, {{VALUE}} h2:focus, {{VALUE}} h3:focus, {{VALUE}} h4:focus, {{VALUE}} h5:focus, {{VALUE}} h6:focus{ outline:none; text-decoration: underline } { /*Kb Elementor workaround end*/',
+                    '(mobile)' => '/*Kb Elementor workaround start*/ } /*Heading Offset*/ {{VALUE}} h1, {{VALUE}} h2, {{VALUE}} h3, {{VALUE}} h4, {{VALUE}} h5, {{VALUE}} h6 { padding-top: {{heading_offset_mobile.SIZE}}{{heading_offset_mobile.UNIT}}; margin-top: -{{heading_offset_mobile.SIZE}}{{heading_offset_mobile.UNIT}} } /*Focused Heading Outline*/ {{VALUE}} h1:focus, {{VALUE}} h2:focus, {{VALUE}} h3:focus, {{VALUE}} h4:focus, {{VALUE}} h5:focus, {{VALUE}} h6:focus{ outline:none; text-decoration: underline } { /*Kb Elementor workaround end*/',
+                ],
             ]
         );
 
