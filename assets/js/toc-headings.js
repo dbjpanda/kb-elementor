@@ -79,7 +79,7 @@
             tocSelector: '.ke-toc-headings-nav',
 
             // Where to grab the headings to build the table of contents.
-            contentSelector: '.ke-toc-headings-content',
+            contentSelector: contentSelector,
 
             // Which headings to grab inside of the contentSelector element.
             headingSelector: headingSelectors,
