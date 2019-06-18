@@ -6,16 +6,6 @@ namespace KbElementor\Modules\TocHeadings\Widgets;
 use KbElementor\Modules\TocHeadings\Skins;
 use KbElementor\Base\Base_Widget;
 use Elementor\Controls_Manager;
-use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
-use Elementor\Scheme_Color;
-use Elementor\Group_Control_Text_Shadow;
-use Elementor\Group_Control_Border;
-use Elementor\Core\DynamicTags\Dynamic_CSS;
-use Elementor\Core\Files\CSS\Post;
-use Elementor\Element_Base;
-use Elementor\Widget_Base;
-use Elementor\Plugin;
 
 // don't call the file directly
 if ( !defined( 'ABSPATH' ) ) exit;
