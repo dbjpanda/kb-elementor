@@ -1,12 +1,15 @@
 <?php
 
 /**
- * Plugin Name: Kb Elmentor
+ * Plugin Name: KB Elementor
  * Plugin URI: https://dbjpanda.me
- * Description: knowledge Base plugin for Elementor
+ * Description: Elementor Plugin for creating wiki like knowledge based site |  Learning Management Site  | Category-Post tree | Series of Posts | Table of Content
  * Version:     1.0.1
  * Author:      dbjpanda
  * Author URI:  https://dbjpanda.me
+ *
+ * License: GPLv3
+ * Text Domain: kb-elementor
  */
 
 namespace KbElementor;
@@ -47,23 +50,23 @@ class Plugin {
      * The whole idea of the singleton design pattern is that there is a single
      * object therefore, we don't want the object to be cloned.
      *
-     * @since 1.0.0
+     * @since 1.0.1
      * @return void
      */
     public function __clone() {
         // Cloning instances of the class is forbidden
-        _doing_it_wrong( __FUNCTION__, __( 'Something went wrong.', 'kb-elementor' ), '1.0.0' );
+        _doing_it_wrong( __FUNCTION__, __( 'Something went wrong.', 'kb-elementor' ), '1.0.1' );
     }
 
     /**
      * Disable unserializing of the class
      *
-     * @since 1.0.0
+     * @since 1.0.1
      * @return void
      */
     public function __wakeup() {
         // Unserializing instances of the class is forbidden
-        _doing_it_wrong( __FUNCTION__, __( 'Something went wrong.', 'kb-elementor' ), '1.0.0' );
+        _doing_it_wrong( __FUNCTION__, __( 'Something went wrong.', 'kb-elementor' ), '1.0.1' );
     }
 
     /**
@@ -138,7 +141,7 @@ class Plugin {
     /**
      * Register all css assets
      *
-     * @since 1.0.0
+     * @since 1.0.1
      * @access public
      */
     public function register_widget_styles() {
@@ -181,7 +184,7 @@ class Plugin {
          * Fires on Kb Elementor, after Elementor has finished loading but
          * before any headers are sent.
          *
-         * @since 1.0.0
+         * @since 1.0.1
          */
         do_action('kb_elementor/init');
     }
@@ -189,7 +192,7 @@ class Plugin {
     /**
      * Register a custom category
      *
-     * @since 1.2.0
+     * @since 1.0.1
      * @access public
      */
     public function register_widget_category( $elements_manager ) {
@@ -205,7 +208,7 @@ class Plugin {
      *
      * Register plugin action hooks and filters
      *
-     * @since 1.2.0
+     * @since 1.0.1
      * @access public
      */
     private function __construct() {
