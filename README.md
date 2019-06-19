@@ -6,7 +6,7 @@
 **Tested up to** : 5.2    
 **Requires PHP** : 5.4  
 **Stable tag** : 1.0.1  
-**License** : GPLv3  
+**License** : GPLv2 or later 
 **License URI** : https://www.gnu.org/licenses/gpl-3.0.html  
 
 Elementor Plugin for creating wiki like knowledge based site |  Learning Management Site  | Category-Post tree | Series of Posts | Table of Content
@@ -36,7 +36,7 @@ KB Elementor is free and open source. It was created with the developer in mind.
 Don't want to mess up with code !!! No worry. You can test, evaluate and create issue if find any. We are developing here in [GitHub Repository](https://github.com/dbjpanda/kb-elementor).
 
 ## Documentation and Support
-- If you have any more questions, visit our support on the [Plugin's Forum](https://wordpress.org/support/plugin/kb-elementor). or create issue on [GitHub Repository](https://github.com/dbjpanda/kb-elementor).
+If you have any more questions, visit our support on the [Plugin's Forum](https://wordpress.org/support/plugin/kb-elementor). or create issue on [GitHub Repository](https://github.com/dbjpanda/kb-elementor).
 
 
 ## Changelog
