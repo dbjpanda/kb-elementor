@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: KB Elementor
- * Plugin URI: https://dbjpanda.me
+ * Plugin URI: https://github.com/dbjpanda/kb-elementor
  * Description: Elementor Plugin for creating wiki like knowledge based site |  Learning Management Site  | Category-Post tree | Series of Posts | Table of Content
  * Version:     1.0.1
  * Author:      dbjpanda
