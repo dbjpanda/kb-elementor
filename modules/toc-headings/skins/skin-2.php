@@ -21,10 +21,6 @@ class Skin_2 extends  Skin_Base{
     public function extra_styles_add() {
     }
 
-//    public function register_style_controls() {
-//        parent::register_style_controls();
-//    }
-
 	public function render(){
         parent::render();
 	}

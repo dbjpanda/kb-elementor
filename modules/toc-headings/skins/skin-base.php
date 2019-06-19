@@ -2,7 +2,6 @@
 
 namespace KbElementor\Modules\TocHeadings\Skins;
 
-
 use Elementor\Controls_Manager;
 use Elementor\Skin_Base as Elementor_Skin_Base;
 use Elementor\Widget_Base;
@@ -10,17 +9,6 @@ use Elementor\Scheme_Color;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
-use Elementor\Group_Control_Border;
-
-use Elementor\Core\DynamicTags\Dynamic_CSS;
-use Elementor\Core\Files\CSS\Post;
-use Elementor\Element_Base;
-
-use Elementor\Core\Files\CSS\Post_Preview;
-
-use Kbelementor\Plugin;
-
-use Elementor\Controls_Stack;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
@@ -36,7 +24,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
     public function register_content_controls( Widget_Base $widget ) {
         $this->parent = $widget;
     }
-
 
 	public function register_style_controls( Widget_Base $widget ) {
         $this->parent = $widget;
@@ -127,7 +114,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
             ]
         );
 
-
         $this->add_group_control(
             Group_Control_Text_Shadow::get_type(),
             [
@@ -178,7 +164,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
         );
 
         $this->end_controls_section();
-
 
         /**
          *  Style Tab : Title
@@ -349,18 +334,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
                 'data-title-icon-inactive' => $settings['inactive_toggle_button_class']
             ]
         );
-
-//        // @toDo Implement it using Js to fix flashing of title name before TOC render
-//        if ( $settings['toc_title'] ){
-//
-//            echo '<p class="ke-toc-title">';
-//            echo $settings['toc_title'];
-//            if ($settings['is_toggle_button']){
-//                echo '<i class = "ke-toc-title-icon ' . $settings['active_toggle_button_class'] . '" data-icon="' . $settings['active_toggle_button_class'] . ' ' . $settings['inactive_toggle_button_class'] . '"></i>';
-//            }
-//            echo '</p>';
-//        }
-
 
         ?>
             <div <?php echo $this->parent->get_render_attribute_string( 'wrapper' ); ?> ></div>
