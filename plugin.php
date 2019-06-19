@@ -8,7 +8,7 @@
  * Author:      dbjpanda
  * Author URI:  https://dbjpanda.me
  *
- * License: GPLv3
+ * License: GPLv2 or later
  * Text Domain: kb-elementor
  */
 

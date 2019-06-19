@@ -13,7 +13,7 @@ Elementor Plugin for creating wiki like knowledge based site |  Learning Managem
 
 ## Description
 
-https://youtu.be/B8SpkyEaAU4
+[![Demo](https://j.gifs.com/6XmN07.gif)](https://www.youtube.com/watch?v=B8SpkyEaAU4) https://youtu.be/B8SpkyEaAU4
 
 If you are one those who loves posting content in an organized manner then KB Elementor is the perfect plugin for you. It consists couple of small widgets required to create a simple wiki like knowledge based site, a tutorial like blog site or a simple learning management site. It depends upon free Elementor plugin.
 
