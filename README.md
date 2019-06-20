@@ -3,24 +3,30 @@
 **Contributors** : dbjpanda  
 **Tags** : kb, drag-and-drop, elementor, toc, table of content, series of posts, lms, simple lms, toc posts, toc terms, posts ordered by term, category tree, wiki  
 **Requires at least** : 4.7  
-**Tested up to** : 5.2    
+**Tested up to** : 5.2  
 **Requires PHP** : 5.4  
 **Stable tag** : 1.0.1  
-**License** : GPLv2 or later 
-**License URI** : https://www.gnu.org/licenses/gpl-3.0.html  
+**License** : GPLv2 or later  
+**License URI** : https://www.gnu.org/licenses/gpl-2.0.html  
 
 Elementor Plugin for creating wiki like knowledge based site |  Learning Management Site  | Category-Post tree | Series of Posts | Table of Content
 
 ## Description
-
-[![Demo](https://j.gifs.com/6XmN07.gif)](https://www.youtube.com/watch?v=B8SpkyEaAU4) https://youtu.be/B8SpkyEaAU4
 
 If you are one those who loves posting content in an organized manner then KB Elementor is the perfect plugin for you. It consists couple of small widgets required to create a simple wiki like knowledge based site, a tutorial like blog site or a simple learning management site. It depends upon free Elementor plugin.
 
 ### Currently it includes 2 widgets and counting
 
 1. **TOC Headings**. Creates a nice table of content for heading tags customizable by Elementor Page Builder
-1. **TOC Posts**. Creates a table of content of posts grouped by their respective categories / terms / taxonomies. It also provides the facility to reorder your posts and terms from frontend.
+1. **TOC Posts**. Creates a table of content of posts grouped by their respective categories / terms / taxonomies. It also provides the facility to create and reorder posts and terms from both frontend and backend.
+
+## Demo
+
+#### Toc Headings
+[![Demo](https://j.gifs.com/6XmN07.gif)](https://www.youtube.com/watch?v=B8SpkyEaAU4) https://youtu.be/B8SpkyEaAU4
+
+#### Toc Posts
+[![Demo](https://j.gifs.com/NLEgBD.gif)](https://youtu.be/USbBnYkPLKg) https://youtu.be/USbBnYkPLKg
 
 ## Installation
 
