@@ -22,15 +22,14 @@
     counter-increment:item;
 }
 
-
-.ke-show-button::after{
-    content: '[show]';
+.ke-hide-button::after{
+    content: '[hide]';
     font-style: normal;
     cursor: pointer
 }
 
-.ke-hide-button::after{
-    content: '[hide]';
+.ke-show-button::after{
+    content: '[show]';
     font-style: normal;
     cursor: pointer
 }
