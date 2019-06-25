@@ -69,6 +69,24 @@ abstract class Skin_Base extends Elementor_Skin_Base {
                 ],
             ]
         );
+	
+	$this->add_control(
+            'active_notation_color',
+            [
+                'label' => __( 'Active notation color', 'toc-headings' ),
+                'type' => Controls_Manager::COLOR,
+                'separator' => 'after',
+		'default' => '#67d34a',
+                'scheme' => [
+                    'type' => Scheme_Color::get_type(),
+                    'value' => Scheme_Color::COLOR_1,
+                ],
+                'selectors' => [
+                    // Stronger selector to avoid section style from overwriting
+                    '{{WRAPPER}} .is-active-li' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
@@ -93,6 +111,24 @@ abstract class Skin_Base extends Elementor_Skin_Base {
                 'selectors' => [
                     // Stronger selector to avoid section style from overwriting
                     '{{WRAPPER}} .toc-link' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+	
+	$this->add_control(
+            'active_text_color',
+            [
+                'label' => __( 'Active text color', 'toc-headings' ),
+                'type' => Controls_Manager::COLOR,
+                'separator' => 'after',
+                'default' => '#67d34a',
+                'scheme' => [
+                    'type' => Scheme_Color::get_type(),
+                    'value' => Scheme_Color::COLOR_1,
+                ],
+                'selectors' => [
+                    // Stronger selector to avoid section style from overwriting
+                    '{{WRAPPER}} .is-active-link' => 'color: {{VALUE}};',
                 ],
             ]
         );
