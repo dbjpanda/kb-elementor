@@ -23,10 +23,13 @@ If you are one those who loves posting content in an organized manner then KB El
 ## Demo
 
 #### Toc Headings
-[![Demo](https://j.gifs.com/6XmN07.gif)](https://www.youtube.com/watch?v=B8SpkyEaAU4) https://youtu.be/B8SpkyEaAU4
+
+[![Demo](https://j.gifs.com/6XmN07.gif)](https://www.youtube.com/watch?v=B8SpkyEaAU4)
+https://youtu.be/B8SpkyEaAU4
 
 #### Toc Posts
-[![Demo](https://j.gifs.com/NLEgBD.gif)](https://youtu.be/USbBnYkPLKg) https://youtu.be/USbBnYkPLKg
+[![Demo](https://j.gifs.com/NLEgBD.gif)](https://youtu.be/USbBnYkPLKg)
+https://youtu.be/USbBnYkPLKg
 
 ## Installation
 

@@ -143,6 +143,8 @@ add_filter('get_terms_orderby', 'uc_get_terms_orderby', 10, 2);
 function rocket_cache_clear_term($post_id){
     $current_term_id = get_the_terms($post_id, 'category')[0]->term_id;
     $parent_term_list = get_term_parents_list($current_term_id, 'category', array('format' => 'name', 'separator' => ',', 'link' => true, 'inclusive' => false));
+    if (!$parent_term_list)
+       return;
     $grand_parent_term = strtok($parent_term_list, ",");
     $grand_parent_term_url = (string)( new SimpleXMLElement($grand_parent_term))['href'];
     if ( function_exists( 'rocket_clean_files' ) ) {
