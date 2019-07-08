@@ -23,6 +23,7 @@ If you are one those who loves posting content in an organized manner then KB El
 ## Demo
 
 #### Toc Headings
+
 [![Demo](https://j.gifs.com/6XmN07.gif)](https://www.youtube.com/watch?v=B8SpkyEaAU4)
 https://youtu.be/B8SpkyEaAU4
 
@@ -45,8 +46,3 @@ Don't want to mess up with code !!! No worry. You can test, evaluate and create 
 
 ## Documentation and Support
 If you have any more questions, visit our support on the [Plugin's Forum](https://wordpress.org/support/plugin/kb-elementor). or create issue on [GitHub Repository](https://github.com/dbjpanda/kb-elementor).
-
-
-## Changelog
-
-* 1.0.1 Initial Public Stable Release 2019-06-19 
