@@ -159,9 +159,11 @@ function rocket_cache_clear_term($post_id){
 function uc_publish_post($post_id){
 
     remove_action('publish_post', 'uc_publish_post');
-    wp_update_post(array('ID' => $post_id, 'menu_order' => $post_id));
-    add_action('publish_post', 'uc_publish_post');
+    if ( ! get_post_field( 'menu_order', $post_id)) {
+        wp_update_post(array('ID' => $post_id, 'menu_order' => $post_id));
+    }
     rocket_cache_clear_term($post_id);
+    add_action('publish_post', 'uc_publish_post');    
 }
 add_action('publish_post', 'uc_publish_post');
 
