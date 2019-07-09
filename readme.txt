@@ -39,6 +39,9 @@ Don't want to mess up with code !!! No worry. You can test, evaluate and create 
 - If you have any more questions, visit our support on the [Plugin's Forum](https://wordpress.org/support/plugin/kb-elementor). or create issue on [GitHub Repository](https://github.com/dbjpanda/kb-elementor).
 
 == Changelog ==
+= 1.0.3 - 2019-07-09 =
+* Preserve order of post as per menu_order after updation of post
+
 = 1.0.2 - 2019-07-08 =
 * Minor Fixes
 
