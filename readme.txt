@@ -4,9 +4,9 @@ Tags: kb, drag-and-drop, elementor, toc, table of content, series of posts, lms,
 Requires at least: 4.7
 Tested up to: 5.2
 Requires PHP: 5.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Elementor Plugin for creating wiki like knowledge based site |  Learning Management Site  | Category-Post tree | Series of Posts | Table of Content
 
