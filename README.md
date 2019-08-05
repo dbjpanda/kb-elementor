@@ -36,6 +36,7 @@ If you are one those who loves posting content in an organized manner then KB El
 1. Go to Pages > Add New
 1. Press the 'Edit with Elementor' button.
 1. Now you can find our widgets inside KB Elementor section, just drag and drop widgets from the left panel onto the content area and customize your settings.
+1. If you are not able to see the headings, please follow the instruction [here](https://github.com/dbjpanda/kb-elementor/issues/15).
 
 ## Be a contributor
 
