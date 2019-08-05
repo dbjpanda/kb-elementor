@@ -29,6 +29,7 @@ If you are one those who loves posting content in an organized manner then KB El
 3. Go to Pages > Add New
 4. Press the 'Edit with Elementor' button.
 5. Now you can find our widgets inside KB Elementor section, just drag and drop widgets from the left panel onto the content area and customize your settings.
+6. If you are not able to see the headings in TOC Heading widget block then please follow the instructions [here](https://github.com/dbjpanda/kb-elementor/issues/15)
 
 = Be a contributor =
 
