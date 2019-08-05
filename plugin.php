@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-define('KE_PLUGIN_FILE_URL', plugins_url(__FILE__));
+define('KE_PLUGIN_FILE_URL', __FILE__);
 define('KE_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ));
 define('KE_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
