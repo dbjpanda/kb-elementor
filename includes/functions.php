@@ -15,7 +15,7 @@ register_activation_hook( KE_PLUGIN_FILE_URL, 'add_column_to_wp_term_table' );
 
 
 /**
- *  Remove column `term_order` to WP_TERM table on plugin activation
+ *  Remove column `term_order` to WP_TERM table on plugin deactivation
  */
 function remove_column_from_wp_term_table(){
     global $wpdb;

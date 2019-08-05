@@ -4,7 +4,7 @@ Tags: kb, drag-and-drop, elementor, toc, table of content, series of posts, lms,
 Requires at least: 4.7
 Tested up to: 5.2
 Requires PHP: 5.4
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,10 @@ Don't want to mess up with code !!! No worry. You can test, evaluate and create 
 - If you have any more questions, visit our support on the [Plugin's Forum](https://wordpress.org/support/plugin/kb-elementor). or create issue on [GitHub Repository](https://github.com/dbjpanda/kb-elementor).
 
 == Changelog ==
+
+= 1.0.4 - 2019-08-05 =
+* Fixed "Plugin causes empty taxonomy list". Thanks to sambbaron for reporting the issue.
+
 = 1.0.3 - 2019-07-09 =
 * Preserve order of post as per menu_order after updation of post
 
