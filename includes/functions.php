@@ -163,7 +163,7 @@ function uc_publish_post($post_id){
         wp_update_post(array('ID' => $post_id, 'menu_order' => $post_id));
     }
     rocket_cache_clear_term($post_id);
-    add_action('publish_post', 'uc_publish_post');    
+    add_action('publish_post', 'uc_publish_post');
 }
 add_action('publish_post', 'uc_publish_post');
 
@@ -237,3 +237,13 @@ function ke_modify_icon_controls( $controls_registry ) {
     $controls_registry->get_control( 'icon' )->set_settings( 'options', $new_icons );
 }
 add_action( 'elementor/controls/controls_registered', 'ke_modify_icon_controls', 10, 1 );
+
+/**
+ * Rank Math SEO filter to add kb-elementor to the TOC list.
+ *
+ * @param array TOC plugins.
+ */
+add_filter('rank_math/researches/toc_plugins', function ( $plugins ) {
+    $plugins['kb-elementor/plugin.php'] = 'KB Elementor';
+    return $plugins;
+});
