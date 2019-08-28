@@ -1,4 +1,16 @@
-# KB Elementor
+# Note
+As of 8th Aug 2019, we refactored this "table of contents for Elementor" plugin from "KB Elementor" to [TOC Pack](https://dbjpanda.me/apps/tocpack). Afterwards it will be available as a premium plugin with premium supports. You can download TOC pack from [here](https://dbjpanda.me/apps/tocpack) donating small amount of money.
+
+
+
+
+
+
+
+
+
+
+## KB Elementor
 
 **Contributors** : dbjpanda  
 **Tags** : kb, drag-and-drop, elementor, toc, table of content, series of posts, lms, simple lms, toc posts, toc terms, posts ordered by term, category tree, wiki  
