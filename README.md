@@ -1,5 +1,5 @@
 # Note
-As of 8th Aug 2019, we refactored this "table of contents for Elementor" plugin from [KB Elementor](https://en-gb.wordpress.org/plugins/kb-elementor) to [TOC Pack](https://dbjpanda.me/apps/tocpack). Afterwards it will be available as a premium plugin with premium supports. You can download TOC pack from [here](https://dbjpanda.me/apps/tocpack) donating very small amount of money.
+As of 8th Aug 2019, we refactored this "table of contents for Elementor" plugin from [KB Elementor](https://en-gb.wordpress.org/plugins/kb-elementor) to [TOC Pack](https://dbjpanda.me/apps/tocpack) with adding more skins and fixing some necessery bugs. Afterwards it will be available as a premium plugin with premium supports. You can download TOC pack from [here](https://dbjpanda.me/apps/tocpack) donating very small amount of money.
 
 
 
